@@ -9,6 +9,11 @@
 %% Application callbacks
 %% ===================================================================
 
+
+%% Define new paths and what handler will deal with the request as per the below.
+%% i.e. {"/doesthing", doesthing_handler, []}
+%% use taglist_handler as a basic example of how to build a handler.
+
 start(_StartType, _StartArgs) ->
 	Dispatch = cowboy_router:compile([
 		{'_', [
