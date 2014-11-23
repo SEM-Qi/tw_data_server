@@ -17,6 +17,9 @@
 start(_StartType, _StartArgs) ->
 	Dispatch = cowboy_router:compile([
 		{'_', [
+			{"/crossdomain.xml", cowboy_static, {priv_file, tw_data_server, "static/crossdomain.xml", [
+				{mimetypes, cow_mimetypes, all}
+			]}},
 			{"/", connection_handler, []},
 			{"/deeper", deeper_handler, []},
 			{"/updatelist", taglist_handler, []},
