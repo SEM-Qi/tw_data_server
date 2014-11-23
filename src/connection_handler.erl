@@ -7,7 +7,7 @@ init(_Transport, Req, _Opts) ->
 handle(Req, State) ->
     {ok, Reply} = cowboy_req:reply(
         302,
-        [{<<"Location">>, <<"http://picard.chalmers.skip.se/updatelist">>}],
+        [{<<"Location">>, <<"http://picard.skip.chalmers.se/updatelist">>}],
         <<"Redirecting with Header!">>,
         Req
     ),
