@@ -9,6 +9,11 @@
 %% Application callbacks
 %% ===================================================================
 
+
+%% Define new paths and what handler will deal with the request as per the below.
+%% i.e. {"/doesthing", doesthing_handler, []}
+%% use taglist_handler as a basic example of how to build a handler.
+
 start(_StartType, _StartArgs) ->
 	Dispatch = cowboy_router:compile([
 		{'_', [
@@ -20,10 +25,8 @@ start(_StartType, _StartArgs) ->
 			{"/setkey", setkey_handler, []}
 		]}
 	]),
-	{ok, _} = cowboy:start_http(http, 100, [{port, 8080}], [
+	{ok, _} = cowboy:start_http(http, 100, [{port, 80}], [
 		{env, [{dispatch, Dispatch}]}
-		% ,
-		% {middlewares, [cowboy_router, directory_lister, cowboy_handler]}
 	]),
 	tw_data_server_sup:start_link().
 stop(_State) ->
