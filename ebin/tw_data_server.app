@@ -5,6 +5,7 @@
               {applications,[kernel,stdlib,cowboy,tag_riak]},
               {mod,{tw_data_server_app,[]}},
               {env,[]},
-              {modules,[attack_handler,connection_handler,deeper_handler,
-                        taglist_handler,tw_data_server_app,
+              {modules,[attack_handler,authorize_handler,connection_handler,
+                        deeper_handler,getuserinfo_handler,setkey_handler,
+                        taglist_handler,testpost_handler,tw_data_server_app,
                         tw_data_server_sup]}]}.
