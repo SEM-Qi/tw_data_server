@@ -17,7 +17,9 @@ start(_StartType, _StartArgs) ->
 			{"/updatelist", taglist_handler, []},
 			{"/tagattack", attack_handler, []},
 			{"/testpost", testpost_handler, []},
-			{"/setkey", setkey_handler, []}
+			{"/setkey", setkey_handler, []},
+			{"/getuserinfo", getuserinfo_handler, []},
+			{"/authorize", authorize_handler, []}
 		]}
 	]),
 	{ok, _} = cowboy:start_http(http, 100, [{port, 8080}], [
