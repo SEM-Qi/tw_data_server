@@ -19,7 +19,7 @@ Once there type `make` into the command line.
 
 There should be a long output as the project builds. Once it is finished enter the following to start up the program in an erlang shell.
 
-	./_rel/tw_data_server_release/bin/tw_data_server_release console
+	sudo ./_rel/tw_data_server_release/bin/tw_data_server_release console
 
 When you make changes you can run `make` again to rebuild.
 
