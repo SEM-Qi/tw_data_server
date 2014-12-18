@@ -14,7 +14,7 @@ handle(Req, _State) ->
 	{Method, Req2} = cowboy_req:method(Req),
 	HasBody = cowboy_req:has_body(Req2),
 	{ok, ParsedQueryString, Req3} = cowboy_req:body_qs(Req2),
-	Player = lists:keyfind(<<"user_id">>, 1, ParsedQueryString),
+	{Key, Player} = lists:keyfind(<<"user_id">>, 1, ParsedQueryString),
 	Pid1 = tag_riak:connect(Player),
 	{ok, Req4} = store_info(Method, HasBody, Req3, Pid1, ParsedQueryString),
 	{ok, Req4, Pid1}.
