@@ -20,11 +20,12 @@ start(_StartType, _StartArgs) ->
 			{"/crossdomain.xml", cowboy_static, {priv_file, tw_data_server, "static/crossdomain.xml", [
 				{mimetypes, cow_mimetypes, all}
 			]}},
-			{"/", connection_handler, []},
-			{"/deeper", deeper_handler, []},
 			{"/updatelist", taglist_handler, []},
 			{"/tagattack", attack_handler, []},
-			{"/testpost", testpost_handler, []}
+			{"/setkey", setkey_handler, []},
+			{"/getuserinfo", getuserinfo_handler, []},
+			{"/updatekey", updatekey_handler, []},
+			{"/authorize", authorize_handler, []}
 		]}
 	]),
 	{ok, _} = cowboy:start_http(http, 100, [{port, 80}], [

@@ -12,8 +12,14 @@
 %% You can also store in erlang records if you wish
 
 init(_Transport, Req, []) ->
-	Pid = tag_riak:connect(),
-	{ok, Req, Pid}.
+	case cowboy_req:qs_val(<<"player">>, Req) of
+		{undefined, Req2} -> 
+			Pid = tag_riak:connect(),
+			{ok, Req2, Pid};
+		{Player, Req2} ->
+			Pid = tag_riak:connect(Player),
+			{ok, Req2, Pid}
+	end.
 
 %% Simplest function is the handle function. Called on any request
 %% Make sure you read the Cowboy documentation to understand the Req object.

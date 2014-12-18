@@ -1,3 +1,3 @@
--sname tw_data_server
+-name tw_data_server
 -setcookie tagwars
 -heart

@@ -6,8 +6,14 @@
 -export([terminate/3]).
 
 init(_Transport, Req, []) ->
-	Pid = tag_riak:connect(),
-	{ok, Req, Pid}.
+	case cowboy_req:qs_val(<<"player">>, Req) of
+		{undefined, Req2} -> 
+			Pid = tag_riak:connect(),
+			{ok, Req2, Pid};
+		{Player, Req2} ->
+			Pid = tag_riak:connect(Player),
+			{ok, Req2, Pid}
+	end.
 
 handle(Req, Pid) ->
 	case cowboy_req:qs_val(<<"tag">>, Req) of
