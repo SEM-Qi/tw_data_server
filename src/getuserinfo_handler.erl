@@ -20,7 +20,7 @@ handle(Req, Pid) ->
 get_info(<<"POST">>, true, Req, Pid) -> %% GET AND POST REQUESTS
 	{ok, TestInfo, Req4} = cowboy_req:body(Req),
 	Result = tag_riak:getuserinfo(Pid, TestInfo),
-	io:format("authorize: ~p~n", [Result]),
+	io:format("getuserinfo: ~p~n", [Result]),
 	if Result =:= bad_request 
 		 -> cowboy_req:reply(400, [], <<"Body format incorrect.">>, Req4);
 	true -> cowboy_req:reply(200, [

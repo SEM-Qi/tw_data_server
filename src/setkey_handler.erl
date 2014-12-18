@@ -21,6 +21,7 @@ handle(Req, _State) ->
 
 store_info(<<"POST">>, true, Req, Pid, ParsedQueryString) ->
 	Result = tag_riak:setkey(Pid, ParsedQueryString),
+	io:format("setkey: ~p~n", [Result]),
 	if Result =:= bad_request
 		-> cowboy_req:reply(400, [], <<"Body format incorrect.">>, Req);
 		true -> cowboy_req:reply(200, [
