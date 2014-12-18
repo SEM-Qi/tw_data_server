@@ -21,6 +21,7 @@ handle(Req, _State) ->
 
 store_info(<<"POST">>, true, Req, Pid, ParsedQueryString) ->
 	Result = tag_riak:authorize(Pid, ParsedQueryString),
+	io:format("authorize: ~p~n", [Result]),
 	cowboy_req:reply(200, [
 		{<<"content-type">>, <<"text/plain; charset=utf-8">>}
 	], Result, Req);
