@@ -1,6 +1,8 @@
-%% Feel free to use, reuse and abuse the code in this file.
+%% ------------------------------------------------------------------
+%% getuserinfo_handler manages the request for user information
+%% ------------------------------------------------------------------
 
-%% @doc POST echo handler.
+
 -module(getuserinfo_handler).
 
 -export([init/3]).
@@ -18,8 +20,8 @@ handle(Req, Pid) ->
 	{ok, Req3, Pid}.
 
 get_info(<<"POST">>, true, Req, Pid) -> %% GET AND POST REQUESTS
-	{ok, TestInfo, Req4} = cowboy_req:body(Req),
-	Result = tag_riak:getuserinfo(Pid, TestInfo),
+	{ok, Info, Req4} = cowboy_req:body(Req),
+	Result = tag_riak:getuserinfo(Pid, Info),
 	io:format("getuserinfo: ~p~n", [Result]),
 	if Result =:= bad_request 
 		 -> cowboy_req:reply(400, [], <<"Body format incorrect.">>, Req4);

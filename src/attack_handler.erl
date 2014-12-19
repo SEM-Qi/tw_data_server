@@ -1,4 +1,7 @@
-%% @doc Hello world handler.
+%% ------------------------------------------------------------------
+%% attack_handler manages the request for tag data
+%% ------------------------------------------------------------------
+
 -module(attack_handler).
 
 -export([init/3]).

@@ -1,4 +1,7 @@
-%% @doc Hello world handler.
+%% ------------------------------------------------------------------
+%% taglist_handler manages the request for user information
+%% ------------------------------------------------------------------
+
 -module(taglist_handler).
 
 -export([init/3]).
@@ -8,8 +11,10 @@
 %% on recieving a request, the handler's init function is called. 
 %% Everything is done with call backs so you need to return as you see below
 %% {ok, Req, State} Req = the request object that has come in, 
-%% State = anything you want to store in as state in the loop. 
-%% You can also store in erlang records if you wish
+%% init is also calls tag_riak:connect(Player) 
+%% (where player information is available) and this returns 
+%% the pid of the process that all future tag_riak calls by this process will be made to
+
 
 init(_Transport, Req, []) ->
 	case cowboy_req:qs_val(<<"player">>, Req) of
@@ -22,7 +27,6 @@ init(_Transport, Req, []) ->
 	end.
 
 %% Simplest function is the handle function. Called on any request
-%% Make sure you read the Cowboy documentation to understand the Req object.
 %% Most important thing to remember is that any operation performed on the 
 %% Req object must be passed to a new variable, even read operations return a new Req object
 

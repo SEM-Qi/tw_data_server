@@ -1,6 +1,8 @@
-%% Feel free to use, reuse and abuse the code in this file.
+%% ------------------------------------------------------------------
+%% setkey_handler manages the request to set the Auth key
+%% ------------------------------------------------------------------
 
-%% @doc POST echo handler.
+
 -module(setkey_handler).
 
 -export([init/3]).
@@ -21,7 +23,6 @@ handle(Req, _State) ->
 
 store_info(<<"POST">>, true, Req, Pid, ParsedQueryString) ->
 	Result = tag_riak:setkey(Pid, ParsedQueryString),
-	io:format("setkey: ~p~n", [Result]),
 	if Result =:= bad_request
 		-> cowboy_req:reply(400, [], <<"Body format incorrect.">>, Req);
 		true -> cowboy_req:reply(200, [

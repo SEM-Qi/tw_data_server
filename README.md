@@ -5,7 +5,7 @@ tw_data_server
 
 ### Installation
 
-* Please note. This installation procedure may not have been implemented yet. This is only valid for unix-like systems. You will need `make` and `git` on your system.
+This is only valid for unix-like systems. You will need `make` and `git` on your system.
 
 Start by cloning the repository:
 
@@ -17,7 +17,7 @@ Go into the 'tw_data_server` directory.
 
 Once there type `make` into the command line.
 
-There should be a long output as the project builds. Once it is finished enter the following to start up the program in an erlang shell.
+There should be a long output as the project builds. Once it is finished (you should see a success message as your last output) enter the following to start up the program in an erlang shell. 
 
 	sudo ./_rel/tw_data_server_release/bin/tw_data_server_release console
 
@@ -25,9 +25,8 @@ When you make changes you can run `make` again to rebuild.
 
 ### Currently valid http query paths
 
-* Currently a running implementation of the server can be found on [picard.chalmers.skip.se](picard.chalmers.skip.se)
 
-Top level - will in next update serve either the main page or simply host crossdomain.xml. Currently says "Hi"
+Top level - hosts static file crossdomain.xml - vital for ensureing Unity can connect
 
 	/
 
@@ -39,13 +38,21 @@ Get a JSON object with the fudged 10 seconds of distribution for a tag (#music u
 
 	/tagattack?tag=music
 
-Test POST handler - requires JSON object in body to match expected id value.
+Set Auth Key
+	
+	/setkey
 
-	/testpost
+Getuserinfo
 
-Test RESTful implementation
+	/getuserinfo
 
-	/deeper
+Update Auth Key
+	
+	/updatekey
+	
+Check if authorised
+
+	/authorize
 
 
 ## Dependencies

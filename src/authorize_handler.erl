@@ -1,6 +1,8 @@
-%% Feel free to use, reuse and abuse the code in this file.
+%% ------------------------------------------------------------------
+%% authorize_handler manages the request for an authorisation check
+%% ------------------------------------------------------------------
 
-%% @doc POST echo handler.
+
 -module(authorize_handler).
 
 -export([init/3]).
@@ -22,7 +24,6 @@ handle(Req, _State) ->
 
 store_info(<<"POST">>, true, Req, Pid, ParsedQueryString) ->
 	Result = tag_riak:authorize(Pid, ParsedQueryString),
-	io:format("authorize: ~p~n", [Result]),
 	cowboy_req:reply(200, [
 		{<<"content-type">>, <<"text/plain; charset=utf-8">>}
 	], Result, Req);
